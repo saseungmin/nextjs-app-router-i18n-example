@@ -3,6 +3,7 @@ import './globals.css';
 import { Language } from '@/types/i18n';
 import { i18nConfig } from '@/utils/i18n';
 import { dir } from 'i18next';
+import TranslationsProvider from '@/components/global/TranslationsProvider';
 
 export const metadata = {
   title: 'Create Next App',
@@ -22,7 +23,11 @@ export type Params = {
 function RootLayout({ children, params }: PropsWithChildren<Params>) {
   return (
     <html lang={params.lang} dir={dir(params.lang)}>
-      <body>{children}</body>
+      <body>
+        <TranslationsProvider lang={params.lang} translationsData={{}}>
+          {children}
+        </TranslationsProvider>
+      </body>
     </html>
   );
 }
